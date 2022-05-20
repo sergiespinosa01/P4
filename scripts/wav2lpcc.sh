@@ -14,14 +14,15 @@ cleanup() {
    \rm -f $base.*
 }
 
-if [[ $# != 3 ]]; then
-   echo "$0 lpc_order input.wav output.lpcc"
+if [[ $# != 4 ]]; then
+   echo "$0 lpc_order lpcc_order input.wav output.lpcc"
    exit 1
 fi
 
 lpc_order=$1
-inputfile=$2
-outputfile=$3
+lpcc_order=$2
+inputfile=$3
+outputfile=$4
 
 UBUNTU_SPTK=1
 if [[ $UBUNTU_SPTK == 1 ]]; then
@@ -40,7 +41,6 @@ else
    LPCC="lpc2c"
 fi
 
-lpcc_order=`echo "scale=0; (($lpc_order * 1.5)+0.5)/1" | bc -l`
 # Main command for feature extration
 sox $inputfile -t raw -e signed -b 16 - | $X2X +sf | $FRAME -l 240 -p 80 | $WINDOW -l 240 -L 240 |
    $LPC -l 240 -m $lpc_order | $LPCC -m $lpc_order -M $lpcc_order> $base.lpcc
