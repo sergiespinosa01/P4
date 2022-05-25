@@ -51,9 +51,11 @@ ejercicios indicados.
 - Explique el procedimiento seguido para obtener un fichero de formato *fmatrix* a partir de los ficheros de
   salida de SPTK (líneas 45 a 47 del script `wav2lp.sh`).
   
-  # Our array files need a header with the number of cols and rows:
+  <code>
+  #Our array files need a header with the number of cols and rows:
   ncol=$((lpc_order+1)) # lpc p =>  (gain a1 a2 ... ap) 
   nrow=`$X2X +fa < $base.lp | wc -l | perl -ne 'print $_/'$ncol', "\n";'`
+  <code>
   
   El numero de columnas ncol es el orden lpc + 1 ya que el primer término es la ganancia.
   El numero de filas nrow se obtiene con la orden wc -l, extrayendolo del fichero de salida donde hemos guardado los parámetros.
@@ -66,14 +68,18 @@ ejercicios indicados.
 - Escriba el *pipeline* principal usado para calcular los coeficientes cepstrales de predicción lineal
   (LPCC) en su fichero <code>scripts/wav2lpcc.sh</code>:
   
-  # Main command for feature extration
+  <code>
+  #Main command for feature extration
 	sox $inputfile -t raw -e signed -b 16 - | $X2X +sf | $FRAME -l 240 -p 80 | $WINDOW -l 240 -L 240 | $LPC -l 240 -m $lpc_order | $LPCC -m $lpc_order 	-M $lpcc_order> $base.lpcc
+  <code>
 
 - Escriba el *pipeline* principal usado para calcular los coeficientes cepstrales en escala Mel (MFCC) en su
   fichero <code>scripts/wav2mfcc.sh</code>:
   
+  <code>
   # Main command for feature extration
-	sox $inputfile -t raw -e signed -b 16 - | $X2X +sf | $FRAME -l 240 -p 80 | $WINDOW -l 240 -L 240 | $MFCC -s 8 -l 240 -m $mfcc_order -n 40 -w 1 > 	$base.mfcc
+	sox $inputfile -t raw -e signed -b 16 - | $X2X +sf | $FRAME -l 240 -p 80 | $WINDOW -l 240 -L 240 | $MFCC -s 8 -l 240 -m $mfcc_order -n 40 -w 		1 > 	$base.mfcc
+	  <code>
 
 ### Extracción de características.
 
