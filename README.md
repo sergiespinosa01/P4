@@ -51,11 +51,9 @@ ejercicios indicados.
 - Explique el procedimiento seguido para obtener un fichero de formato *fmatrix* a partir de los ficheros de
   salida de SPTK (líneas 45 a 47 del script `wav2lp.sh`).
   
-  <code>
-  #Our array files need a header with the number of cols and rows:
+  <code> #Our array files need a header with the number of cols and rows:
   ncol=$((lpc_order+1)) # lpc p =>  (gain a1 a2 ... ap) 
-  nrow=`$X2X +fa < $base.lp | wc -l | perl -ne 'print $_/'$ncol', "\n";'`
-  <code>
+  nrow=`$X2X +fa < $base.lp | wc -l | perl -ne 'print $_/'$ncol', "\n";'`<code>
   
   El numero de columnas ncol es el orden lpc + 1 ya que el primer término es la ganancia.
   El numero de filas nrow se obtiene con la orden wc -l, extrayendolo del fichero de salida donde hemos guardado los parámetros.
