@@ -36,8 +36,7 @@ ejercicios indicados.
   En este script se procesa un fichero de audio pasado como input. Se combinan los programas SPTK para confeccionar un programa que implementa una parametrización en concreto (LP, coeficientes de predicción lineal). Para ello, ejecuta un pipeline que realiza diversas tareas.
   
   # Main command for feature extration
-  sox $inputfile -t raw -e signed -b 16 - | $X2X +sf | $FRAME -l 240 -p 80 | $WINDOW -l 240 -L 240 |
-	$LPC -l 240 -m $lpc_order > $base.lp
+  sox $inputfile -t raw -e signed -b 16 - | $X2X +sf | $FRAME -l 240 -p 80 | $WINDOW -l 240 -L 240 | $LPC -l 240 -m $lpc_order > $base.lp
   
   - sox: Es un programa de edición de audio multiplataforma. Aquí se utiliza para convertir la señal de entrada y escribir el resultado en la salida.
     - -t: Indica el tipo de fichero de audio (raw)
@@ -51,15 +50,30 @@ ejercicios indicados.
 
 - Explique el procedimiento seguido para obtener un fichero de formato *fmatrix* a partir de los ficheros de
   salida de SPTK (líneas 45 a 47 del script `wav2lp.sh`).
+  
+  # Our array files need a header with the number of cols and rows:
+  ncol=$((lpc_order+1)) # lpc p =>  (gain a1 a2 ... ap) 
+  nrow=`$X2X +fa < $base.lp | wc -l | perl -ne 'print $_/'$ncol', "\n";'`
+  
+  El numero de columnas ncol es el orden lpc + 1 ya que el primer término es la ganancia.
+  El numero de filas nrow se obtiene con la orden wc -l, extrayendolo del fichero de salida donde hemos guardado los parámetros.
 
   * ¿Por qué es conveniente usar este formato (u otro parecido)? Tenga en cuenta cuál es el formato de
     entrada y cuál es el de resultado.
+    
+    De esta forma construimos una matriz y podemos comparar filas y columnas, por ejemplo, para ver resultados distintos para un mismo coeficiente.
 
 - Escriba el *pipeline* principal usado para calcular los coeficientes cepstrales de predicción lineal
   (LPCC) en su fichero <code>scripts/wav2lpcc.sh</code>:
+  
+  # Main command for feature extration
+	sox $inputfile -t raw -e signed -b 16 - | $X2X +sf | $FRAME -l 240 -p 80 | $WINDOW -l 240 -L 240 | $LPC -l 240 -m $lpc_order | $LPCC -m $lpc_order 	-M $lpcc_order> $base.lpcc
 
 - Escriba el *pipeline* principal usado para calcular los coeficientes cepstrales en escala Mel (MFCC) en su
   fichero <code>scripts/wav2mfcc.sh</code>:
+  
+  # Main command for feature extration
+	sox $inputfile -t raw -e signed -b 16 - | $X2X +sf | $FRAME -l 240 -p 80 | $WINDOW -l 240 -L 240 | $MFCC -s 8 -l 240 -m $mfcc_order -n 40 -w 1 > 	$base.mfcc
 
 ### Extracción de características.
 
