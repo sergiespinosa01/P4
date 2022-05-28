@@ -65,7 +65,8 @@ ejercicios indicados.
 - Escriba el *pipeline* principal usado para calcular los coeficientes cepstrales de predicción lineal
   (LPCC) en su fichero <code>scripts/wav2lpcc.sh</code>:
   
-	sox $inputfile -t raw -e signed -b 16 - | $X2X +sf | $FRAME -l 240 -p 80 | $WINDOW -l 240 -L 240 | $LPC -l 240 -m $lpc_order | $LPCC -m $lpc_order 	   -M $lpcc_order> $base.lpcc
+	sox $inputfile -t raw -e signed -b 16 - | $X2X +sf | $FRAME -l 240 -p 80 | $WINDOW -l 240 -L 240 |
+   $LPC -l 240 -m $lpc_order | $LPCC -m $lpc_order -M $lpcc_order> $base.lpcc
 
 - Escriba el *pipeline* principal usado para calcular los coeficientes cepstrales en escala Mel (MFCC) en su
   fichero <code>scripts/wav2mfcc.sh</code>:
@@ -76,7 +77,9 @@ ejercicios indicados.
 
 - Inserte una imagen mostrando la dependencia entre los coeficientes 2 y 3 de las tres parametrizaciones
   para todas las señales de un locutor.
+  
   <img src="img/GMM_0_0.png" width="640" align="center">
+  
   + Indique **todas** las órdenes necesarias para obtener las gráficas a partir de las señales 
     parametrizadas.
   + ¿Cuál de ellas le parece que contiene más información?
@@ -99,9 +102,16 @@ Complete el código necesario para entrenar modelos GMM.
 - Inserte una gráfica que muestre la función de densidad de probabilidad modelada por el GMM de un locutor
   para sus dos primeros coeficientes de MFCC.
   
+  <img src="img/GMM_LOCUTOR.png" width="640" align="center">
+  
 - Inserte una gráfica que permita comparar los modelos y poblaciones de dos locutores distintos (la gŕafica
   de la página 20 del enunciado puede servirle de referencia del resultado deseado). Analice la capacidad
   del modelado GMM para diferenciar las señales de uno y otro.
+  
+  <img src="img/GMM_0_0.png" width="640" align="center">
+  <img src="img/GMM_0_1.png" width="640" align="center">
+  <img src="img/GMM_1_1.png" width="640" align="center">
+  <img src="img/GMM_1_0.png" width="640" align="center">
 
 ### Reconocimiento del locutor.
 
