@@ -113,7 +113,7 @@ compute_mfcc() {
     shift
     for filename in $(sort $*); do
         mkdir -p `dirname $w/$FEAT/$filename.$FEAT`
-        EXEC="wav2mfcc 16 $db_devel/$filename.wav $w/$FEAT/$filename.$FEAT"
+        EXEC="wav2mfcc 20 $db_devel/$filename.wav $w/$FEAT/$filename.$FEAT"
         echo $EXEC && $EXEC || exit 1
         done
 }
