@@ -83,6 +83,7 @@ ejercicios indicados.
   + Indique **todas** las órdenes necesarias para obtener las gráficas a partir de las señales 
     parametrizadas.
   + ¿Cuál de ellas le parece que contiene más información?
+  La que contiene más información es la de LPCC, ya que los coeficientes estan menos correlacionados.
 
 - Usando el programa <code>pearson</code>, obtenga los coeficientes de correlación normalizada entre los
   parámetros 2 y 3 para un locutor, y rellene la tabla siguiente con los valores obtenidos.
