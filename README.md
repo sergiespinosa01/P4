@@ -84,7 +84,7 @@ ejercicios indicados.
     parametrizadas.
     python3 graficar.py
   + ¿Cuál de ellas le parece que contiene más información?
-  La que contiene más información es la de LPCC, ya que los coeficientes estan menos correlacionados.
+  La que contiene más información es la de MFCC, seguida de LPCC, ya que los coeficientes estan menos correlados.
 
 - Usando el programa <code>pearson</code>, obtenga los coeficientes de correlación normalizada entre los
   parámetros 2 y 3 para un locutor, y rellene la tabla siguiente con los valores obtenidos.
@@ -94,8 +94,12 @@ ejercicios indicados.
   | &rho;<sub>x</sub>[2,3] |  -0,876    | 0,139     | 0,008    |
   
   + Compare los resultados de <code>pearson</code> con los obtenidos gráficamente.
+
+	Los resultados de pearson se corresponden con los obtenidos gráficamente, pues MFCC tiene una correlación normalizada muy cercana a 0 en valor absoluto, LPCC ligeramente más alejada del 0 y LP muy alejada del 0, concretamente casi llega al 1 en valor absoluto. Como veíamos en las gráficas, tanto MFCC como LPCC están más incorrelados y nos aportan bastante más información que LP.
   
 - Según la teoría, ¿qué parámetros considera adecuados para el cálculo de los coeficientes LPCC y MFCC?
+
+	Consideramos adecuados 20 coeficientes para el cálculo de LPCC y 16 coeficientes para el cálculo de MFCC.
 
 ### Entrenamiento y visualización de los GMM.
 
