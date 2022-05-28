@@ -111,7 +111,7 @@ Complete el código necesario para entrenar modelos GMM.
   <img src="img/GMM_0_0.png" width="640" align="center">
   <img src="img/GMM_0_1.png" width="640" align="center">
   <img src="img/GMM_1_1.png" width="640" align="center">
-  <img src="img/GMM_1_0.png" width="640" align="center">
+  <img src="img/GMM_1_0.png" align="center">
 
 ### Reconocimiento del locutor.
 
