@@ -82,6 +82,7 @@ ejercicios indicados.
   
   + Indique **todas** las órdenes necesarias para obtener las gráficas a partir de las señales 
     parametrizadas.
+    python3 graficar.py
   + ¿Cuál de ellas le parece que contiene más información?
   La que contiene más información es la de LPCC, ya que los coeficientes estan menos correlacionados.
 
