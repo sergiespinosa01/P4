@@ -119,6 +119,8 @@ Complete el código necesario para entrenar modelos GMM.
   <img src="img/GMM_1_1.png" align="center">
   <img src="img/GMM_1_0.png" align="center">
 
+	Las distribuciones son parecidas pero lo suficentemente distintas como para distinguir entre locutores.
+	
 ### Reconocimiento del locutor.
 
 Complete el código necesario para realizar reconociminto del locutor y optimice sus parámetros.
